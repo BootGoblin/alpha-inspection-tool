@@ -8,7 +8,7 @@
         :root {
             --creamsicle-bg: #fff5e6;
             --card-white: #ffffff;
-            --primary-blue: #0056b3;
+            --primary-orange: #d35400; /* Changed from blue to dark orange */
             --hover-orange: #fff0d4;
             --item-bg: #fffbf2;
         }
@@ -24,13 +24,13 @@
         }
         
         h1 { 
-            color: var(--primary-blue); 
+            color: var(--primary-orange); 
             text-align: center; 
             margin-bottom: 30px;
         }
         
         h2 { 
-            color: var(--primary-blue); 
+            color: var(--primary-orange); 
             border-bottom: 2px solid var(--creamsicle-bg);
             padding-bottom: 10px;
             margin-top: 0;
@@ -50,6 +50,17 @@
             margin-top: 25px;
             margin-bottom: 8px;
             color: #444;
+        }
+
+        /* Adjusted reflection text to look more like a prompt than a label */
+        p.reflection-text {
+            font-size: 1.1em;
+            font-style: italic;
+            color: #555;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            padding-left: 10px;
+            border-left: 3px solid var(--primary-orange);
         }
         
         input[type="text"], input[type="date"], textarea, select {
@@ -86,7 +97,7 @@
             margin-right: 15px;
             width: 24px;
             height: 24px;
-            accent-color: var(--primary-blue);
+            accent-color: var(--primary-orange);
         }
         
         details {
@@ -101,7 +112,7 @@
         summary {
             font-weight: bold;
             font-size: 1.2em;
-            color: var(--primary-blue);
+            color: var(--primary-orange);
             cursor: pointer;
             outline: none;
             padding: 5px 0;
@@ -110,21 +121,21 @@
         .photo-upload {
             margin-top: 25px;
             padding: 20px;
-            background: #f0f7ff;
-            border: 2px dashed var(--primary-blue);
+            background: #fff5e6;
+            border: 2px dashed var(--primary-orange);
             border-radius: 8px;
             text-align: center;
         }
         
         .photo-upload label {
-            margin-top: 0; font-size: 1.1em; color: var(--primary-blue);
+            margin-top: 0; font-size: 1.1em; color: var(--primary-orange);
         }
         
         button.export-btn {
             display: block;
             width: 100%;
             padding: 18px;
-            background-color: var(--primary-blue);
+            background-color: var(--primary-orange);
             color: white;
             border: none;
             border-radius: 8px;
@@ -133,21 +144,22 @@
             cursor: pointer;
             margin-top: 40px;
             margin-bottom: 40px;
-            box-shadow: 0 4px 6px rgba(0, 86, 179, 0.3);
+            box-shadow: 0 4px 6px rgba(211, 84, 0, 0.3);
             transition: background-color 0.2s;
         }
-        button.export-btn:hover { background-color: #004494; }
+        button.export-btn:hover { background-color: #a04000; }
         
         @media print {
             body { background: white; padding: 0; font-size: 12pt;}
             .header-card, .section-card, details { box-shadow: none; border: none; padding: 0; margin-bottom: 20px;}
-            h1, h2 { color: black; }
+            h1, h2 { color: black; border-bottom: none; }
             details { border-bottom: 1px solid #ddd; padding-bottom: 20px; }
             details[open] summary ~ * { display: block; }
             details:not([open]) summary ~ * { display: block; }
             button, .photo-upload { display: none; }
             .checkbox-group { background: none; border: none; padding: 5px 0; margin-bottom: 5px; }
             input[type="checkbox"] { height: 15px; width: 15px; }
+            p.reflection-text { border-left: none; font-style: normal; font-weight: bold; color: black; padding-left: 0;}
         }
     </style>
 </head>
@@ -166,20 +178,15 @@
         <label class="field-label">Inspector:</label>
         <input type="text" placeholder="Inspector name">
         
-        <label class="field-label">GC Contact:</label>
-        <input type="text" placeholder="GC Contact name">
+        <label class="field-label">Superintendent:</label>
+        <input type="text" placeholder="Superintendent name">
     </div>
 
     <div class="section-card">
         <h2>Reflective Questions</h2>
-        <label class="field-label">What will the finished project look like based off what I see?</label>
-        <textarea placeholder="Enter notes..."></textarea>
-        
-        <label class="field-label">What will an average person see when they look at our job site?</label>
-        <textarea placeholder="Enter notes..."></textarea>
-        
-        <label class="field-label">What are the ways we can always improve?</label>
-        <textarea placeholder="Enter notes..."></textarea>
+        <p class="reflection-text">What will the finished project look like based off what I see?</p>
+        <p class="reflection-text">What will an average person see when they look at our job site?</p>
+        <p class="reflection-text">What are the ways we can always improve?</p>
     </div>
 
     <div class="section-card">
