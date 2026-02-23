@@ -118,11 +118,14 @@
     <div class="header-card">
         <h2>Project Information</h2>
         <label class="field-label">Project Name:</label>
-        <input type="text" placeholder="Enter project name">
+        <input type="text" id="projectName" placeholder="Enter project name">
+        
         <label class="field-label">Date of Inspection:</label>
         <input type="date" id="todayDate">
+        
         <label class="field-label">Inspector:</label>
         <input type="text" placeholder="Inspector name">
+        
         <label class="field-label">Superintendent:</label>
         <input type="text" placeholder="Superintendent name">
     </div>
@@ -327,18 +330,15 @@
             input.addEventListener('change', function(e) {
                 const container = this.parentElement;
                 
-                // Find or create the gallery box for this specific section
                 let gallery = container.querySelector('.image-gallery');
                 if (!gallery) {
                     gallery = document.createElement('div');
                     gallery.className = 'image-gallery';
                     container.appendChild(gallery);
                 } else {
-                    // If they click upload again, clear out the old photos first
                     gallery.innerHTML = '';
                 }
 
-                // Loop through EVERY photo they selected and add it to the page
                 Array.from(this.files).forEach(file => {
                     const img = document.createElement('img');
                     img.className = 'preview-image';
@@ -348,6 +348,7 @@
             });
         });
 
+        // Updated PDF Generation with Dynamic Naming
         function generatePDF() {
             // Force all menus open for the report
             const details = document.querySelectorAll('details');
@@ -355,8 +356,29 @@
                 detail.setAttribute('open', 'true');
             });
             
+            // Grab the Project Name and Date
+            let projName = document.getElementById('projectName').value.trim();
+            let dateStr = document.getElementById('todayDate').value;
+            
+            // If they left the project name blank, give it a default fallback
+            if (projName === "") {
+                projName = "Alpha_Roofing";
+            }
+            
+            // Save the original website title
+            const originalTitle = document.title;
+            
+            // Temporarily change the title so the browser uses it as the file name
+            // (e.g., "Kroger_Remodel_Inspection_2026-02-23")
+            document.title = `${projName}_Inspection_${dateStr}`;
+            
             // Trigger the print dialogue
             window.print();
+            
+            // Change the title back after a brief delay
+            setTimeout(() => {
+                document.title = originalTitle;
+            }, 1000);
         }
     </script>
 </body>
