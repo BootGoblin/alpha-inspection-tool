@@ -23,101 +23,36 @@
             margin: 0 auto;
         }
         
-        h1 { 
-            color: var(--primary-orange); 
-            text-align: center; 
-            margin-bottom: 30px;
-        }
-        
-        h2 { 
-            color: var(--primary-orange); 
-            border-bottom: 2px solid var(--creamsicle-bg);
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
+        h1 { color: var(--primary-orange); text-align: center; margin-bottom: 30px; }
+        h2 { color: var(--primary-orange); border-bottom: 2px solid var(--creamsicle-bg); padding-bottom: 10px; margin-top: 0; }
         
         .header-card, .section-card {
-            background: var(--card-white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            background: var(--card-white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 30px;
         }
         
-        label.field-label {
-            display: block;
-            font-weight: bold;
-            margin-top: 25px;
-            margin-bottom: 8px;
-            color: #444;
-        }
+        label.field-label { display: block; font-weight: bold; margin-top: 25px; margin-bottom: 8px; color: #444; }
 
         p.reflection-text {
-            font-size: 1.1em;
-            font-style: italic;
-            color: #555;
-            margin-top: 15px;
-            margin-bottom: 5px;
-            padding-left: 10px;
-            border-left: 3px solid var(--primary-orange);
+            font-size: 1.1em; font-style: italic; color: #555; margin-top: 15px; margin-bottom: 5px; padding-left: 10px; border-left: 3px solid var(--primary-orange);
         }
         
         input[type="text"], input[type="date"], textarea, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-family: inherit;
-            font-size: 16px;
-            background-color: #fafafa;
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-family: inherit; font-size: 16px; background-color: #fafafa;
         }
         
         textarea { resize: vertical; min-height: 100px; }
         
         .checkbox-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-weight: 500;
-            background-color: var(--item-bg);
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
+            display: flex; align-items: center; margin-bottom: 15px; font-weight: 500; background-color: var(--item-bg); padding: 12px 15px; border-radius: 8px; border: 1px solid transparent; transition: all 0.2s ease;
         }
+        .checkbox-group:hover { background-color: var(--hover-orange); border-color: #fbdba7; }
+        .checkbox-group input[type="checkbox"] { margin-right: 15px; width: 24px; height: 24px; accent-color: var(--primary-orange); }
         
-        .checkbox-group:hover {
-            background-color: var(--hover-orange);
-            border-color: #fbdba7;
-        }
+        details { background: white; border: 1px solid #eee; border-radius: 8px; padding: 15px; margin-top: 25px; margin-bottom: 25px; }
+        summary { font-weight: bold; font-size: 1.2em; color: var(--primary-orange); cursor: pointer; outline: none; padding: 5px 0; }
         
-        .checkbox-group input[type="checkbox"] {
-            margin-right: 15px;
-            width: 24px;
-            height: 24px;
-            accent-color: var(--primary-orange);
-        }
-        
-        details {
-            background: white;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 25px;
-            margin-bottom: 25px;
-        }
-        
-        summary {
-            font-weight: bold;
-            font-size: 1.2em;
-            color: var(--primary-orange);
-            cursor: pointer;
-            outline: none;
-            padding: 5px 0;
-        }
-        
-        .photo-upload {
+        /* Photo Upload Styling */
+        .photo-upload-container {
             margin-top: 25px;
             padding: 20px;
             background: #fff5e6;
@@ -125,29 +60,27 @@
             border-radius: 8px;
             text-align: center;
         }
+        .photo-upload-container label.upload-label {
+            margin-top: 0; font-size: 1.1em; color: var(--primary-orange); display: block; margin-bottom: 10px; cursor: pointer;
+        }
         
-        .photo-upload label {
-            margin-top: 0; font-size: 1.1em; color: var(--primary-orange);
+        /* Style specifically for the image once it loads */
+        img.preview-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: block; /* Ensures it sits on its own line */
+            margin-left: auto; margin-right: auto;
         }
         
         button.export-btn {
-            display: block;
-            width: 100%;
-            padding: 18px;
-            background-color: var(--primary-orange);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.3em;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 6px rgba(211, 84, 0, 0.3);
-            transition: background-color 0.2s;
+            display: block; width: 100%; padding: 18px; background-color: var(--primary-orange); color: white; border: none; border-radius: 8px; font-size: 1.3em; font-weight: bold; cursor: pointer; margin-top: 40px; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(211, 84, 0, 0.3); transition: background-color 0.2s;
         }
         button.export-btn:hover { background-color: #a04000; }
         
+        /* --- PDF PRINT STYLING --- */
         @media print {
             body { background: white; padding: 0; font-size: 12pt;}
             .header-card, .section-card, details { box-shadow: none; border: none; padding: 0; margin-bottom: 20px;}
@@ -155,7 +88,13 @@
             details { border-bottom: 1px solid #ddd; padding-bottom: 20px; }
             details[open] summary ~ * { display: block; }
             details:not([open]) summary ~ * { display: block; }
-            button, .photo-upload { display: none; }
+            button.export-btn { display: none; } /* Hide only the main export button */
+            
+            /* Photo specific print styling */
+            .photo-upload-container { border: none; background: none; padding: 5px 0; text-align: left;}
+            .upload-label, input[type="file"] { display: none; } /* Hide the buttons and labels */
+            img.preview-image { max-width: 350px; margin-top: 10px; box-shadow: none; border: 1px solid #eee;} /* Adjust image size for report */
+
             .checkbox-group { background: none; border: none; padding: 5px 0; margin-bottom: 5px; }
             input[type="checkbox"] { height: 15px; width: 15px; }
             p.reflection-text { border-left: none; font-style: normal; font-weight: bold; color: black; padding-left: 0;}
@@ -170,13 +109,10 @@
         <h2>Project Information</h2>
         <label class="field-label">Project Name:</label>
         <input type="text" placeholder="Enter project name">
-        
         <label class="field-label">Date of Inspection:</label>
         <input type="date" id="todayDate">
-        
         <label class="field-label">Inspector:</label>
         <input type="text" placeholder="Inspector name">
-        
         <label class="field-label">Superintendent:</label>
         <input type="text" placeholder="Superintendent name">
     </div>
@@ -190,7 +126,6 @@
 
     <div class="section-card">
         <h2>Arrival Inspection</h2>
-        
         <details>
             <summary>1. Safety Conditions</summary>
             <div style="margin-top: 20px;">
@@ -203,9 +138,8 @@
             </div>
             <label class="field-label">Comments:</label>
             <textarea placeholder="Safety comments..."></textarea>
-            
-            <div class="photo-upload">
-                <label>📷 Attach Photo</label>
+            <div class="photo-upload-container">
+                <label class="upload-label">📷 Attach Photo</label>
                 <input type="file" accept="image/*">
             </div>
         </details>
@@ -221,9 +155,8 @@
             </div>
             <label class="field-label">Comments:</label>
             <textarea placeholder="Site condition comments..."></textarea>
-            
-            <div class="photo-upload">
-                <label>📷 Attach Photo</label>
+            <div class="photo-upload-container">
+                <label class="upload-label">📷 Attach Photo</label>
                 <input type="file" accept="image/*">
             </div>
         </details>
@@ -231,7 +164,6 @@
 
     <div class="section-card">
         <h2>Roof Top Inspection</h2>
-        
         <details>
             <summary>1. Jump Out Inspection (General Observations)</summary>
              <div style="margin-top: 20px;">
@@ -242,9 +174,8 @@
             </div>
             <label class="field-label">Comments on Jump Out:</label>
             <textarea placeholder="Jump out comments..."></textarea>
-            
-            <div class="photo-upload">
-                <label>📷 Attach Photo</label>
+            <div class="photo-upload-container">
+                <label class="upload-label">📷 Attach Photo</label>
                 <input type="file" accept="image/*">
             </div>
         </details>
@@ -256,7 +187,6 @@
                 <label class="checkbox-group"><input type="checkbox"> Assembly procedures compliant</label>
                 <label class="checkbox-group"><input type="checkbox"> Coverage is complete/on target</label>
             </div>
-            
             <label class="field-label">Dry in status:</label>
             <select>
                 <option value="">Select Status...</option>
@@ -264,11 +194,10 @@
                 <option value="partial">Partial</option>
                 <option value="na">N/A</option>
             </select>
-            
             <label class="field-label">Comments on Production:</label>
             <textarea placeholder="Production comments..."></textarea>
-            <div class="photo-upload">
-                <label>📷 Attach Photo</label>
+            <div class="photo-upload-container">
+                <label class="upload-label">📷 Attach Photo</label>
                 <input type="file" accept="image/*">
             </div>
         </details>
@@ -281,12 +210,10 @@
                 <label class="checkbox-group"><input type="checkbox"> Warranty inspection factors: penetrations, terminations, drains, patches</label>
                 <label class="checkbox-group"><input type="checkbox"> Efficiency observations noted</label>
             </div>
-            
             <label class="field-label">Specific Details Requiring Attention:</label>
             <textarea placeholder="Enter specific details..."></textarea>
-            
-            <div class="photo-upload">
-                <label>📷 Attach Photo</label>
+            <div class="photo-upload-container">
+                <label class="upload-label">📷 Attach Photo</label>
                 <input type="file" accept="image/*">
             </div>
         </details>
@@ -294,10 +221,8 @@
 
     <div class="section-card">
         <h2>Coaching & Planning</h2>
-        
         <details>
             <summary>1. Superintendent’s Assessment</summary>
-            
             <label class="field-label">How do you feel the project is going?</label>
             <select>
                 <option value="">Select Assessment...</option>
@@ -305,7 +230,6 @@
                 <option value="fair">Fair</option>
                 <option value="poor">Poor</option>
             </select>
-
             <div style="margin-top: 20px;">
                 <label class="checkbox-group"><input type="checkbox"> Successes discussed</label>
                 <label class="checkbox-group"><input type="checkbox"> Obstacles identified</label>
@@ -313,7 +237,6 @@
                 <label class="checkbox-group"><input type="checkbox"> GC interactions reviewed</label>
                 <label class="checkbox-group"><input type="checkbox"> Trades coordination reviewed</label>
             </div>
-            
             <label class="field-label">Summary of Discussion:</label>
             <textarea placeholder="Enter discussion summary..."></textarea>
         </details>
@@ -324,7 +247,6 @@
                 <label class="checkbox-group"><input type="checkbox"> Alpha’s responsibility items addressed</label>
                 <label class="checkbox-group"><input type="checkbox"> Crew’s responsibility items addressed</label>
             </div>
-            
             <label class="field-label">Required Safety Follow-up:</label>
             <textarea placeholder="Enter safety follow-up items..."></textarea>
         </details>
@@ -337,7 +259,6 @@
                 <label class="checkbox-group"><input type="checkbox"> Fasteners inventory checked</label>
                 <label class="checkbox-group"><input type="checkbox"> Terminations inventory checked</label>
             </div>
-            
             <label class="field-label">Specific Material Orders/Adjustments Needed:</label>
             <textarea placeholder="Enter material needs..."></textarea>
         </details>
@@ -349,26 +270,22 @@
                 <label class="checkbox-group"><input type="checkbox"> Field verified components confirmed</label>
                 <label class="checkbox-group"><input type="checkbox"> Recommended changes in scope noted</label>
             </div>
-            
             <label class="field-label">RFI/CO Status:</label>
             <input type="text" placeholder="Enter current status...">
         </details>
 
         <details>
             <summary>5. Crew Performance</summary>
-            
             <label class="field-label">Safety performance evaluated:</label>
             <select>
                 <option value="">Select Evaluation...</option>
                 <option value="pass">Pass</option>
                 <option value="needs-improvement">Needs Improvement</option>
             </select>
-
             <div style="margin-top: 20px;">
                 <label class="checkbox-group"><input type="checkbox"> Size of crew adequate</label>
                 <label class="checkbox-group"><input type="checkbox"> Alpha quality standards met</label>
             </div>
-            
             <label class="field-label">Crew Feedback/Action Plan:</label>
             <textarea placeholder="Enter feedback and action plan..."></textarea>
         </details>
@@ -383,7 +300,6 @@
                 <label class="checkbox-group"><input type="checkbox"> Time line reviewed and confirmed</label>
                 <label class="checkbox-group"><input type="checkbox"> Superintendent’s plan documented</label>
             </div>
-            
             <label class="field-label">Next Steps Action Items:</label>
             <textarea placeholder="Enter action items..."></textarea>
         </details>
@@ -392,15 +308,37 @@
     <button class="export-btn" onclick="generatePDF()">Generate PDF Report</button>
 
     <script>
+        // Set date
         document.getElementById('todayDate').valueAsDate = new Date();
 
-        function generatePDF() {
-            const details = document.querySelectorAll('details');
-            details.forEach(detail => {
-                detail.setAttribute('open', 'true');
+        // --- NEW IMAGE PREVIEW LOGIC ---
+        // Find all file inputs
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        
+        // Add a listener to each one
+        fileInputs.forEach(input => {
+            input.addEventListener('change', function(e) {
+                const file = this.files[0]; // Get the selected file
+                if (file) {
+                    const reader = new FileReader(); // Create a reader
+                    const container = this.parentElement; // Find the container div
+                    
+                    reader.onload = function(event) {
+                        // Remove existing preview if there is one
+                        const existingPreview = container.querySelector('.preview-image');
+                        if (existingPreview) {
+                            existingPreview.remove();
+                        }
+
+                        // Create new image element
+                        const img = document.createElement('img');
+                        img.src = event.target.result;
+                        img.classList.add('preview-image'); // Add style class
+                        container.appendChild(img); // Add it to page
+                    }
+                    reader.readAsDataURL(file); // Read the file as data URL
+                }
             });
-            window.print();
-        }
-    </script>
-</body>
-</html>
+        });
+
+        // PDF Generation Script
