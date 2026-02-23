@@ -64,16 +64,21 @@
             margin-top: 0; font-size: 1.1em; color: var(--primary-orange); display: block; margin-bottom: 10px; cursor: pointer; font-weight: bold;
         }
         
-        /* Image Preview Style */
+        /* Multiple Image Gallery Style */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
         img.preview-image {
             max-width: 100%;
             height: auto;
-            max-height: 400px; /* Keeps really tall photos from taking over the whole screen */
+            max-height: 300px; /* Slightly smaller to allow side-by-side */
             border-radius: 8px;
-            margin-top: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            display: block;
-            margin-left: auto; margin-right: auto;
             object-fit: contain;
         }
         
@@ -90,13 +95,15 @@
             details { border-bottom: 1px solid #ddd; padding-bottom: 20px; page-break-inside: avoid; }
             details[open] summary ~ * { display: block; }
             details:not([open]) summary ~ * { display: block; }
-            button.export-btn { display: none; }
             
-            .photo-upload-container { border: none; background: none; padding: 5px 0; text-align: center; page-break-inside: avoid; }
-            .upload-label, input[type="file"] { display: none; }
+            /* Guaranteed hide for Export Button during print */
+            button.export-btn { display: none !important; }
             
-            /* Print style for the image */
-            img.preview-image { max-width: 400px; max-height: 400px; margin-top: 10px; box-shadow: none; border: 2px solid #ddd; }
+            .photo-upload-container { border: none; background: none; padding: 5px 0; text-align: left; page-break-inside: avoid; }
+            .upload-label, input[type="file"] { display: none !important; }
+            
+            .image-gallery { justify-content: flex-start; gap: 10px; }
+            img.preview-image { max-width: 300px; max-height: 300px; box-shadow: none; border: 2px solid #ddd; }
 
             .checkbox-group { background: none; border: none; padding: 5px 0; margin-bottom: 5px; }
             input[type="checkbox"] { height: 15px; width: 15px; }
@@ -142,8 +149,8 @@
             <label class="field-label">Comments:</label>
             <textarea placeholder="Safety comments..."></textarea>
             <div class="photo-upload-container">
-                <label class="upload-label">📷 Attach Photo</label>
-                <input type="file" accept="image/*">
+                <label class="upload-label">📷 Attach Photos</label>
+                <input type="file" accept="image/*" multiple>
             </div>
         </details>
 
@@ -159,8 +166,8 @@
             <label class="field-label">Comments:</label>
             <textarea placeholder="Site condition comments..."></textarea>
             <div class="photo-upload-container">
-                <label class="upload-label">📷 Attach Photo</label>
-                <input type="file" accept="image/*">
+                <label class="upload-label">📷 Attach Photos</label>
+                <input type="file" accept="image/*" multiple>
             </div>
         </details>
     </div>
@@ -178,8 +185,8 @@
             <label class="field-label">Comments on Jump Out:</label>
             <textarea placeholder="Jump out comments..."></textarea>
             <div class="photo-upload-container">
-                <label class="upload-label">📷 Attach Photo</label>
-                <input type="file" accept="image/*">
+                <label class="upload-label">📷 Attach Photos</label>
+                <input type="file" accept="image/*" multiple>
             </div>
         </details>
 
@@ -200,8 +207,8 @@
             <label class="field-label">Comments on Production:</label>
             <textarea placeholder="Production comments..."></textarea>
             <div class="photo-upload-container">
-                <label class="upload-label">📷 Attach Photo</label>
-                <input type="file" accept="image/*">
+                <label class="upload-label">📷 Attach Photos</label>
+                <input type="file" accept="image/*" multiple>
             </div>
         </details>
 
@@ -216,8 +223,8 @@
             <label class="field-label">Specific Details Requiring Attention:</label>
             <textarea placeholder="Enter specific details..."></textarea>
             <div class="photo-upload-container">
-                <label class="upload-label">📷 Attach Photo</label>
-                <input type="file" accept="image/*">
+                <label class="upload-label">📷 Attach Photos</label>
+                <input type="file" accept="image/*" multiple>
             </div>
         </details>
     </div>
@@ -308,41 +315,47 @@
         </details>
     </div>
 
-    <button class="export-btn" onclick="generatePDF()">Generate PDF Report</button>
+    <button class="export-btn" id="pdfButton" onclick="generatePDF()">Generate PDF Report</button>
 
     <script>
         document.getElementById('todayDate').valueAsDate = new Date();
 
-        // High-Performance Image Loader
+        // High-Performance MULTIPLE Image Loader
         const fileInputs = document.querySelectorAll('input[type="file"]');
         
         fileInputs.forEach(input => {
             input.addEventListener('change', function(e) {
-                const file = this.files[0];
-                if (file) {
-                    const container = this.parentElement;
-                    
-                    // Remove the old image if there is one
-                    const oldImg = container.querySelector('.preview-image');
-                    if (oldImg) {
-                        oldImg.remove();
-                    }
+                const container = this.parentElement;
+                
+                // Find or create the gallery box for this specific section
+                let gallery = container.querySelector('.image-gallery');
+                if (!gallery) {
+                    gallery = document.createElement('div');
+                    gallery.className = 'image-gallery';
+                    container.appendChild(gallery);
+                } else {
+                    // If they click upload again, clear out the old photos first
+                    gallery.innerHTML = '';
+                }
 
-                    // Create the new image pipeline
+                // Loop through EVERY photo they selected and add it to the page
+                Array.from(this.files).forEach(file => {
                     const img = document.createElement('img');
                     img.className = 'preview-image';
                     img.src = URL.createObjectURL(file);
-                    
-                    container.appendChild(img);
-                }
+                    gallery.appendChild(img);
+                });
             });
         });
 
         function generatePDF() {
+            // Force all menus open for the report
             const details = document.querySelectorAll('details');
             details.forEach(detail => {
                 detail.setAttribute('open', 'true');
             });
+            
+            // Trigger the print dialogue
             window.print();
         }
     </script>
