@@ -1,279 +1,263 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2868
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Roofing Field Inspection</title>
+    <style>
+        :root {
+            --creamsicle-bg: #fff5e6;
+            --card-white: #ffffff;
+            --primary-blue: #0056b3;
+            --hover-orange: #fff0d4;
+            --item-bg: #fffbf2;
+        }
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="en">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>Alpha Roofing Field Inspection</title>\
-    <style>\
-        :root \{\
-            --creamsicle-bg: #fff5e6;\
-            --card-white: #ffffff;\
-            --primary-blue: #0056b3;\
-            --hover-orange: #fff0d4;\
-            --item-bg: #fffbf2;\
-        \}\
-\
-        body \{\
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;\
-            background-color: var(--creamsicle-bg); /* Soft creamsicle background */\
-            color: #333;\
-            line-height: 1.6;\
-            padding: 25px;\
-            max-width: 800px;\
-            margin: 0 auto;\
-        \}\
-        \
-        h1 \{ \
-            color: var(--primary-blue); \
-            text-align: center; \
-            margin-bottom: 30px;\
-        \}\
-        \
-        h2 \{ \
-            color: var(--primary-blue); \
-            border-bottom: 2px solid var(--creamsicle-bg);\
-            padding-bottom: 10px;\
-            margin-top: 0;\
-        \}\
-        \
-        /* Main containers for sections */\
-        .header-card, .section-card \{\
-            background: var(--card-white);\
-            padding: 30px; /* More internal space */\
-            border-radius: 12px; /*Softer corners */\
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Softer shadow */\
-            margin-bottom: 30px; /* More space between cards */\
-        \}\
-        \
-        /* Standard input labels */\
-        label.field-label \{\
-            display: block;\
-            font-weight: bold;\
-            margin-top: 25px; /* Significant space before new fields */\
-            margin-bottom: 8px;\
-            color: #444;\
-        \}\
-        \
-        input[type="text"], input[type="date"], textarea, select \{\
-            width: 100%;\
-            padding: 12px;\
-            border: 1px solid #ddd;\
-            border-radius: 6px;\
-            box-sizing: border-box;\
-            font-family: inherit;\
-            font-size: 16px; /* Better for mobile tapping */\
-            background-color: #fafafa;\
-        \}\
-        \
-        textarea \{ resize: vertical; min-height: 100px; \}\
-        \
-        /* Styling the checklist items to look like distinct bullet points */\
-        .checkbox-group \{\
-            display: flex;\
-            align-items: center;\
-            margin-bottom: 15px; /* Space between checklist items */\
-            font-weight: 500;\
-            background-color: var(--item-bg); /* Subtle background for each item */\
-            padding: 12px 15px; /* Space inside the item box */\
-            border-radius: 8px;\
-            border: 1px solid transparent;\
-            transition: all 0.2s ease;\
-        \}\
-        \
-        /* Hover effect for better usability feedback */\
-        .checkbox-group:hover \{\
-            background-color: var(--hover-orange);\
-            border-color: #fbdba7;\
-        \}\
-        \
-        /* Making the actual checkbox bigger for fat fingers */\
-        .checkbox-group input[type="checkbox"] \{\
-            margin-right: 15px;\
-            width: 24px;\
-            height: 24px;\
-            accent-color: var(--primary-blue); /* Makes the checkmark blue when checked */\
-        \}\
-        \
-        /* Collapsible sections styling */\
-        details \{\
-            background: white;\
-            border: 1px solid #eee;\
-            border-radius: 8px;\
-            padding: 15px;\
-            margin-top: 25px;\
-            margin-bottom: 25px;\
-        \}\
-        \
-        summary \{\
-            font-weight: bold;\
-            font-size: 1.2em;\
-            color: var(--primary-blue);\
-            cursor: pointer;\
-            outline: none;\
-            padding: 5px 0;\
-        \}\
-        \
-        /* Photo upload area */\
-        .photo-upload \{\
-            margin-top: 25px;\
-            padding: 20px;\
-            background: #f0f7ff;\
-            border: 2px dashed var(--primary-blue);\
-            border-radius: 8px;\
-            text-align: center;\
-        \}\
-        \
-        .photo-upload label \{\
-            margin-top: 0; font-size: 1.1em; color: var(--primary-blue);\
-        \}\
-        \
-        /* Export Button */\
-        button.export-btn \{\
-            display: block;\
-            width: 100%;\
-            padding: 18px;\
-            background-color: var(--primary-blue);\
-            color: white;\
-            border: none;\
-            border-radius: 8px;\
-            font-size: 1.3em;\
-            font-weight: bold;\
-            cursor: pointer;\
-            margin-top: 40px;\
-            margin-bottom: 40px;\
-            box-shadow: 0 4px 6px rgba(0, 86, 179, 0.3);\
-            transition: background-color 0.2s;\
-        \}\
-        button.export-btn:hover \{ background-color: #004494; \}\
-        \
-        /* Print styling for PDF generation - cleans up the look for the final report */\
-        @media print \{\
-            body \{ background: white; padding: 0; font-size: 12pt;\}\
-            .header-card, .section-card, details \{ box-shadow: none; border: none; padding: 0; margin-bottom: 20px;\}\
-            h1, h2 \{ color: black; \}\
-            details \{ border-bottom: 1px solid #ddd; padding-bottom: 20px; \}\
-            details[open] summary ~ * \{ display: block; \}\
-            details:not([open]) summary ~ * \{ display: block; \} /* Expands all for PDF */\
-            button, .photo-upload \{ display: none; \} /* Hides buttons and uploaders on PDF */\
-            .checkbox-group \{ background: none; border: none; padding: 5px 0; margin-bottom: 5px; \}\
-            input[type="checkbox"] \{ height: 15px; width: 15px; \}\
-        \}\
-    </style>\
-</head>\
-<body>\
-\
-    <h1>Alpha Roofing - Field Inspection</h1>\
-\
-    <div class="header-card">\
-        <h2>Project Information</h2>\
-        <label class="field-label">Project Name:</label>\
-        <input type="text" placeholder="Enter project name">\
-        \
-        <label class="field-label">Date of Inspection:</label>\
-        <input type="date" id="todayDate">\
-        \
-        <label class="field-label">Inspector:</label>\
-        <input type="text" placeholder="Inspector name">\
-        \
-        <label class="field-label">GC Contact:</label>\
-        <input type="text" placeholder="GC Contact name">\
-    </div>\
-\
-    <div class="section-card">\
-        <h2>Reflective Questions</h2>\
-        <label class="field-label">What will the finished project look like based off what I see?</label>\
-        <textarea placeholder="Enter notes..."></textarea>\
-        \
-        <label class="field-label">What will an average person see when they look at our job site?</label>\
-        <textarea placeholder="Enter notes..."></textarea>\
-        \
-        <label class="field-label">What are the ways we can always improve?</label>\
-        <textarea placeholder="Enter notes..."></textarea>\
-    </div>\
-\
-    <div class="section-card">\
-        <h2>Arrival Inspection</h2>\
-        \
-        <details open> <summary>1. Safety Conditions</summary>\
-            <div style="margin-top: 20px;"> <label class="checkbox-group"><input type="checkbox"> Site access established and clear</label>\
-                <label class="checkbox-group"><input type="checkbox"> Equipment secured and maintained</label>\
-                <label class="checkbox-group"><input type="checkbox"> Building access procedures followed</label>\
-                <label class="checkbox-group"><input type="checkbox"> Roof access procedures followed</label>\
-                <label class="checkbox-group"><input type="checkbox"> Flagging/Barricades in place and adequate</label>\
-                <label class="checkbox-group"><input type="checkbox"> Harness usage observed where required</label>\
-            </div>\
-            <label class="field-label">Comments:</label>\
-            <textarea placeholder="Safety comments..."></textarea>\
-            \
-            <div class="photo-upload">\
-                <label>\uc0\u55357 \u56567  Attach Photo</label>\
-                <input type="file" accept="image/*">\
-            </div>\
-        </details>\
-\
-        <details>\
-            <summary>2. Job Site Conditions</summary>\
-             <div style="margin-top: 20px;">\
-                <label class="checkbox-group"><input type="checkbox"> GC management interaction/coordination successful</label>\
-                <label class="checkbox-group"><input type="checkbox"> Alpha material management organized</label>\
-                <label class="checkbox-group"><input type="checkbox"> Trash management and disposal adequate</label>\
-                <label class="checkbox-group"><input type="checkbox"> Overall job site cleanliness maintained</label>\
-                <label class="checkbox-group"><input type="checkbox"> Building access free of obstruction</label>\
-            </div>\
-            <label class="field-label">Comments:</label>\
-            <textarea placeholder="Site condition comments..."></textarea>\
-        </details>\
-    </div>\
-\
-    <div class="section-card">\
-        <h2>Roof Top Inspection</h2>\
-        \
-        <details>\
-            <summary>1. Production & Dry-in Status</summary>\
-             <div style="margin-top: 20px;">\
-                <label class="checkbox-group"><input type="checkbox"> Stage of work observed matches plan</label>\
-                <label class="checkbox-group"><input type="checkbox"> Assembly procedures compliant</label>\
-                <label class="checkbox-group"><input type="checkbox"> Coverage is complete/on target</label>\
-            </div>\
-            \
-            <label class="field-label">Dry in status:</label>\
-            <select>\
-                <option value="">Select Status...</option>\
-                <option value="complete">Complete</option>\
-                <option value="partial">Partial</option>\
-                <option value="na">N/A</option>\
-            </select>\
-            \
-            <label class="field-label">Comments on Production:</label>\
-            <textarea placeholder="Production comments..."></textarea>\
-            <div class="photo-upload">\
-                <label>\uc0\u55357 \u56567  Attach Photo</label>\
-                <input type="file" accept="image/*">\
-            </div>\
-        </details>\
-    </div>\
-\
-    <button class="export-btn" onclick="generatePDF()">Generate PDF Report</button>\
-\
-    <script>\
-        // Auto-fill today's date\
-        document.getElementById('todayDate').valueAsDate = new Date();\
-\
-        // Simple script to trigger browser's print-to-PDF\
-        function generatePDF() \{\
-            const details = document.querySelectorAll('details');\
-            details.forEach(detail => \{\
-                detail.setAttribute('open', 'true');\
-            \});\
-            window.print();\
-        \}\
-    </script>\
-</body>\
-</html>}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--creamsicle-bg);
+            color: #333;
+            line-height: 1.6;
+            padding: 25px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 { 
+            color: var(--primary-blue); 
+            text-align: center; 
+            margin-bottom: 30px;
+        }
+        
+        h2 { 
+            color: var(--primary-blue); 
+            border-bottom: 2px solid var(--creamsicle-bg);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .header-card, .section-card {
+            background: var(--card-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        label.field-label {
+            display: block;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        
+        input[type="text"], input[type="date"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 16px;
+            background-color: #fafafa;
+        }
+        
+        textarea { resize: vertical; min-height: 100px; }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-weight: 500;
+            background-color: var(--item-bg);
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .checkbox-group:hover {
+            background-color: var(--hover-orange);
+            border-color: #fbdba7;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 15px;
+            width: 24px;
+            height: 24px;
+            accent-color: var(--primary-blue);
+        }
+        
+        details {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        
+        summary {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--primary-blue);
+            cursor: pointer;
+            outline: none;
+            padding: 5px 0;
+        }
+        
+        .photo-upload {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f0f7ff;
+            border: 2px dashed var(--primary-blue);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .photo-upload label {
+            margin-top: 0; font-size: 1.1em; color: var(--primary-blue);
+        }
+        
+        button.export-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 86, 179, 0.3);
+            transition: background-color 0.2s;
+        }
+        button.export-btn:hover { background-color: #004494; }
+        
+        @media print {
+            body { background: white; padding: 0; font-size: 12pt;}
+            .header-card, .section-card, details { box-shadow: none; border: none; padding: 0; margin-bottom: 20px;}
+            h1, h2 { color: black; }
+            details { border-bottom: 1px solid #ddd; padding-bottom: 20px; }
+            details[open] summary ~ * { display: block; }
+            details:not([open]) summary ~ * { display: block; }
+            button, .photo-upload { display: none; }
+            .checkbox-group { background: none; border: none; padding: 5px 0; margin-bottom: 5px; }
+            input[type="checkbox"] { height: 15px; width: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Alpha Roofing - Field Inspection</h1>
+
+    <div class="header-card">
+        <h2>Project Information</h2>
+        <label class="field-label">Project Name:</label>
+        <input type="text" placeholder="Enter project name">
+        
+        <label class="field-label">Date of Inspection:</label>
+        <input type="date" id="todayDate">
+        
+        <label class="field-label">Inspector:</label>
+        <input type="text" placeholder="Inspector name">
+        
+        <label class="field-label">GC Contact:</label>
+        <input type="text" placeholder="GC Contact name">
+    </div>
+
+    <div class="section-card">
+        <h2>Reflective Questions</h2>
+        <label class="field-label">What will the finished project look like based off what I see?</label>
+        <textarea placeholder="Enter notes..."></textarea>
+        
+        <label class="field-label">What will an average person see when they look at our job site?</label>
+        <textarea placeholder="Enter notes..."></textarea>
+        
+        <label class="field-label">What are the ways we can always improve?</label>
+        <textarea placeholder="Enter notes..."></textarea>
+    </div>
+
+    <div class="section-card">
+        <h2>Arrival Inspection</h2>
+        
+        <details>
+            <summary>1. Safety Conditions</summary>
+            <div style="margin-top: 20px;">
+                <label class="checkbox-group"><input type="checkbox"> Site access established and clear</label>
+                <label class="checkbox-group"><input type="checkbox"> Equipment secured and maintained</label>
+                <label class="checkbox-group"><input type="checkbox"> Building access procedures followed</label>
+                <label class="checkbox-group"><input type="checkbox"> Roof access procedures followed</label>
+                <label class="checkbox-group"><input type="checkbox"> Flagging/Barricades in place and adequate</label>
+                <label class="checkbox-group"><input type="checkbox"> Harness usage observed where required</label>
+            </div>
+            <label class="field-label">Comments:</label>
+            <textarea placeholder="Safety comments..."></textarea>
+            
+            <div class="photo-upload">
+                <label>📷 Attach Photo</label>
+                <input type="file" accept="image/*">
+            </div>
+        </details>
+
+        <details>
+            <summary>2. Job Site Conditions</summary>
+             <div style="margin-top: 20px;">
+                <label class="checkbox-group"><input type="checkbox"> GC management interaction/coordination successful</label>
+                <label class="checkbox-group"><input type="checkbox"> Alpha material management organized</label>
+                <label class="checkbox-group"><input type="checkbox"> Trash management and disposal adequate</label>
+                <label class="checkbox-group"><input type="checkbox"> Overall job site cleanliness maintained</label>
+                <label class="checkbox-group"><input type="checkbox"> Building access free of obstruction</label>
+            </div>
+            <label class="field-label">Comments:</label>
+            <textarea placeholder="Site condition comments..."></textarea>
+        </details>
+    </div>
+
+    <div class="section-card">
+        <h2>Roof Top Inspection</h2>
+        
+        <details>
+            <summary>1. Production & Dry-in Status</summary>
+             <div style="margin-top: 20px;">
+                <label class="checkbox-group"><input type="checkbox"> Stage of work observed matches plan</label>
+                <label class="checkbox-group"><input type="checkbox"> Assembly procedures compliant</label>
+                <label class="checkbox-group"><input type="checkbox"> Coverage is complete/on target</label>
+            </div>
+            
+            <label class="field-label">Dry in status:</label>
+            <select>
+                <option value="">Select Status...</option>
+                <option value="complete">Complete</option>
+                <option value="partial">Partial</option>
+                <option value="na">N/A</option>
+            </select>
+            
+            <label class="field-label">Comments on Production:</label>
+            <textarea placeholder="Production comments..."></textarea>
+            <div class="photo-upload">
+                <label>📷 Attach Photo</label>
+                <input type="file" accept="image/*">
+            </div>
+        </details>
+    </div>
+
+    <button class="export-btn" onclick="generatePDF()">Generate PDF Report</button>
+
+    <script>
+        document.getElementById('todayDate').valueAsDate = new Date();
+
+        function generatePDF() {
+            const details = document.querySelectorAll('details');
+            details.forEach(detail => {
+                detail.setAttribute('open', 'true');
+            });
+            window.print();
+        }
+    </script>
+</body>
+</html>
