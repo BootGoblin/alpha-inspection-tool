@@ -118,11 +118,8 @@
     <div class="header-card">
         <h2>Job Information & Initial Assessment</h2>
         
-        <label class="field-label">Service Order / Ticket Number:</label>
-        <input type="text" id="ticketNumber" placeholder="Enter ticket number">
-        
-        <label class="field-label">Customer Name & Contact:</label>
-        <input type="text" placeholder="Enter customer name and contact info">
+        <label class="field-label">Work Order:</label>
+        <input type="text" id="workOrderNumber" placeholder="Enter work order number">
         
         <label class="field-label">Date of Service:</label>
         <input type="date" id="todayDate">
@@ -138,20 +135,12 @@
             </div>
         </div>
         
-        <label class="field-label">Technician(s) Assigned:</label>
+        <label class="field-label">Technicians:</label>
         <input type="text" placeholder="Enter technician names">
 
-        <label class="field-label">Initial Problem Description / Diagnosis:</label>
-        <textarea placeholder="Describe the initial problem here..."></textarea>
+        <label class="field-label">Scope of Work:</label>
+        <textarea placeholder="Describe the scope of work here..."></textarea>
         
-        <div style="margin-top: 20px;">
-            <label class="checkbox-group"><input type="checkbox"> Service Order/Ticket number recorded</label>
-            <label class="checkbox-group"><input type="checkbox"> Customer name and contact information confirmed</label>
-            <label class="checkbox-group"><input type="checkbox"> Date and time of arrival/departure noted</label>
-            <label class="checkbox-group"><input type="checkbox"> Technician(s) assigned to the job recorded</label>
-            <label class="checkbox-group"><input type="checkbox"> Initial problem description/diagnosis documented</label>
-        </div>
-
         <div class="photo-upload-container">
             <label class="upload-label">📷 Attach Photos (Initial Assessment)</label>
             <input type="file" accept="image/*" multiple>
@@ -178,7 +167,6 @@
     <div class="section-card">
         <h2>On-Site Service & Procedure</h2>
         <div style="margin-top: 10px;">
-            <label class="checkbox-group"><input type="checkbox"> Customer greeted and repair procedure explained clearly</label>
             <label class="checkbox-group"><input type="checkbox"> Work area isolated and cleared of non-essential items</label>
             <label class="checkbox-group"><input type="checkbox"> Repair steps followed as per company/manufacturer guidelines</label>
             <label class="checkbox-group"><input type="checkbox"> Communication with office/support for complex issues successful</label>
@@ -238,23 +226,23 @@
         });
 
         function generatePDF() {
-            // Force all menus open for the report (if any are added later)
+            // Force all menus open for the report
             const details = document.querySelectorAll('details');
             details.forEach(detail => {
                 detail.setAttribute('open', 'true');
             });
             
-            // Dynamic naming using the Ticket Number
-            let ticketNum = document.getElementById('ticketNumber').value.trim();
+            // Dynamic naming using the Work Order
+            let woNum = document.getElementById('workOrderNumber').value.trim();
             let dateStr = document.getElementById('todayDate').value;
             
-            if (ticketNum === "") {
-                ticketNum = "Blank_Ticket";
+            if (woNum === "") {
+                woNum = "Blank_WO";
             }
             
             const originalTitle = document.title;
-            // Example output: Service_Ticket_12345_2026-02-23
-            document.title = `Service_Ticket_${ticketNum}_${dateStr}`;
+            // Example output: Service_WO_12345_2026-02-23
+            document.title = `Service_WO_${woNum}_${dateStr}`;
             
             window.print();
             
