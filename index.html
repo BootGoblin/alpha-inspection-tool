@@ -8,7 +8,7 @@
         :root {
             --creamsicle-bg: #fff5e6;
             --card-white: #ffffff;
-            --primary-orange: #d35400; /* Changed from blue to dark orange */
+            --primary-orange: #d35400;
             --hover-orange: #fff0d4;
             --item-bg: #fffbf2;
         }
@@ -52,7 +52,6 @@
             color: #444;
         }
 
-        /* Adjusted reflection text to look more like a prompt than a label */
         p.reflection-text {
             font-size: 1.1em;
             font-style: italic;
@@ -222,6 +221,11 @@
             </div>
             <label class="field-label">Comments:</label>
             <textarea placeholder="Site condition comments..."></textarea>
+            
+            <div class="photo-upload">
+                <label>📷 Attach Photo</label>
+                <input type="file" accept="image/*">
+            </div>
         </details>
     </div>
 
@@ -229,7 +233,24 @@
         <h2>Roof Top Inspection</h2>
         
         <details>
-            <summary>1. Production & Dry-in Status</summary>
+            <summary>1. Jump Out Inspection (General Observations)</summary>
+             <div style="margin-top: 20px;">
+                <label class="checkbox-group"><input type="checkbox"> Safety setup compliant</label>
+                <label class="checkbox-group"><input type="checkbox"> Tool inspections completed</label>
+                <label class="checkbox-group"><input type="checkbox"> Cleanliness & Organization maintained</label>
+                <label class="checkbox-group"><input type="checkbox"> Crew conduct professional and safe</label>
+            </div>
+            <label class="field-label">Comments on Jump Out:</label>
+            <textarea placeholder="Jump out comments..."></textarea>
+            
+            <div class="photo-upload">
+                <label>📷 Attach Photo</label>
+                <input type="file" accept="image/*">
+            </div>
+        </details>
+
+        <details>
+            <summary>2. Production & Dry-in Status</summary>
              <div style="margin-top: 20px;">
                 <label class="checkbox-group"><input type="checkbox"> Stage of work observed matches plan</label>
                 <label class="checkbox-group"><input type="checkbox"> Assembly procedures compliant</label>
@@ -250,6 +271,121 @@
                 <label>📷 Attach Photo</label>
                 <input type="file" accept="image/*">
             </div>
+        </details>
+
+        <details>
+            <summary>3. Details</summary>
+             <div style="margin-top: 20px;">
+                <label class="checkbox-group"><input type="checkbox"> Quality of work meets Alpha Roofing standards: rounded corners, straight cuts, square allignment</label>
+                <label class="checkbox-group"><input type="checkbox"> Specification compliance confirmed</label>
+                <label class="checkbox-group"><input type="checkbox"> Warranty inspection factors: penetrations, terminations, drains, patches</label>
+                <label class="checkbox-group"><input type="checkbox"> Efficiency observations noted</label>
+            </div>
+            
+            <label class="field-label">Specific Details Requiring Attention:</label>
+            <textarea placeholder="Enter specific details..."></textarea>
+            
+            <div class="photo-upload">
+                <label>📷 Attach Photo</label>
+                <input type="file" accept="image/*">
+            </div>
+        </details>
+    </div>
+
+    <div class="section-card">
+        <h2>Coaching & Planning</h2>
+        
+        <details>
+            <summary>1. Superintendent’s Assessment</summary>
+            
+            <label class="field-label">How do you feel the project is going?</label>
+            <select>
+                <option value="">Select Assessment...</option>
+                <option value="good">Good</option>
+                <option value="fair">Fair</option>
+                <option value="poor">Poor</option>
+            </select>
+
+            <div style="margin-top: 20px;">
+                <label class="checkbox-group"><input type="checkbox"> Successes discussed</label>
+                <label class="checkbox-group"><input type="checkbox"> Obstacles identified</label>
+                <label class="checkbox-group"><input type="checkbox"> Suggestions for the process recorded</label>
+                <label class="checkbox-group"><input type="checkbox"> GC interactions reviewed</label>
+                <label class="checkbox-group"><input type="checkbox"> Trades coordination reviewed</label>
+            </div>
+            
+            <label class="field-label">Summary of Discussion:</label>
+            <textarea placeholder="Enter discussion summary..."></textarea>
+        </details>
+
+        <details>
+            <summary>2. Safety Needs</summary>
+            <div style="margin-top: 20px;">
+                <label class="checkbox-group"><input type="checkbox"> Alpha’s responsibility items addressed</label>
+                <label class="checkbox-group"><input type="checkbox"> Crew’s responsibility items addressed</label>
+            </div>
+            
+            <label class="field-label">Required Safety Follow-up:</label>
+            <textarea placeholder="Enter safety follow-up items..."></textarea>
+        </details>
+
+        <details>
+            <summary>3. Materials Needs</summary>
+            <div style="margin-top: 20px;">
+                <label class="checkbox-group"><input type="checkbox"> Insulation inventory checked</label>
+                <label class="checkbox-group"><input type="checkbox"> Membrane inventory checked</label>
+                <label class="checkbox-group"><input type="checkbox"> Fasteners inventory checked</label>
+                <label class="checkbox-group"><input type="checkbox"> Terminations inventory checked</label>
+            </div>
+            
+            <label class="field-label">Specific Material Orders/Adjustments Needed:</label>
+            <textarea placeholder="Enter material needs..."></textarea>
+        </details>
+
+        <details>
+            <summary>4. RFI/Change Order (CO)</summary>
+            <div style="margin-top: 20px;">
+                <label class="checkbox-group"><input type="checkbox"> Details in question addressed</label>
+                <label class="checkbox-group"><input type="checkbox"> Field verified components confirmed</label>
+                <label class="checkbox-group"><input type="checkbox"> Recommended changes in scope noted</label>
+            </div>
+            
+            <label class="field-label">RFI/CO Status:</label>
+            <input type="text" placeholder="Enter current status...">
+        </details>
+
+        <details>
+            <summary>5. Crew Performance</summary>
+            
+            <label class="field-label">Safety performance evaluated:</label>
+            <select>
+                <option value="">Select Evaluation...</option>
+                <option value="pass">Pass</option>
+                <option value="needs-improvement">Needs Improvement</option>
+            </select>
+
+            <div style="margin-top: 20px;">
+                <label class="checkbox-group"><input type="checkbox"> Size of crew adequate</label>
+                <label class="checkbox-group"><input type="checkbox"> Alpha quality standards met</label>
+            </div>
+            
+            <label class="field-label">Crew Feedback/Action Plan:</label>
+            <textarea placeholder="Enter feedback and action plan..."></textarea>
+        </details>
+
+        <details>
+            <summary>6. Next Steps</summary>
+            <div style="margin-top: 20px;">
+                <label class="checkbox-group"><input type="checkbox"> Roof progression plan confirmed</label>
+                <label class="checkbox-group"><input type="checkbox"> Weather forecast reviewed for impact</label>
+                <label class="checkbox-group"><input type="checkbox"> Demobilization plan established (if applicable)</label>
+                <label class="checkbox-group"><input type="checkbox"> Return trips scheduled (if applicable)</label>
+                <label class="checkbox-group"><input type="checkbox"> Time line reviewed and confirmed</label>
+                <label class="checkbox-group"><input type="checkbox"> Superintendent’s plan documented</label>
+            </div>
+            
+            <label class="field-label">Next Steps Action Items:</label>
+            <textarea placeholder="Enter action items..."></textarea>
         </details>
     </div>
 
