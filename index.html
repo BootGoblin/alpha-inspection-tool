@@ -10,9 +10,9 @@
 
     <style>
         :root {
-            --page-bg: #ffeef2; /* Soft pink background */
+            --page-bg: #ffeef2; 
             --card-white: #ffffff;
-            --primary-accent: #6b1111; /* Dark maroon text and buttons */
+            --primary-accent: #6b1111; 
             --hover-bg: #ffdbe2;
             --item-bg: #fff9fa;
         }
@@ -27,12 +27,18 @@
             margin: 0 auto;
         }
         
-        h1 { color: var(--primary-accent); text-align: center; margin-bottom: 30px; }
+        h1 { color: var(--primary-accent); text-align: center; margin-bottom: 20px; }
         h2 { color: var(--primary-accent); border-bottom: 2px solid var(--page-bg); padding-bottom: 10px; margin-top: 0; }
         
         .header-card, .section-card {
             background: var(--card-white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 30px;
         }
+
+        /* Clear Form Button */
+        button.clear-btn {
+            display: block; width: 100%; padding: 12px; background-color: transparent; color: var(--primary-accent); border: 2px solid var(--primary-accent); border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin-bottom: 30px; transition: background-color 0.2s;
+        }
+        button.clear-btn:hover { background-color: var(--hover-bg); }
         
         label.field-label { display: block; font-weight: bold; margin-top: 25px; margin-bottom: 8px; color: #444; }
 
@@ -46,49 +52,42 @@
         
         textarea { resize: vertical; min-height: 100px; }
         
-        .checkbox-group {
-            display: flex; align-items: center; margin-bottom: 15px; font-weight: 500; background-color: var(--item-bg); padding: 12px 15px; border-radius: 8px; border: 1px solid transparent; transition: all 0.2s ease;
+        /* New Layout for Task + N/A Checkboxes */
+        .inspection-item {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            background-color: var(--item-bg); padding: 12px 15px; border-radius: 8px; margin-bottom: 12px; transition: all 0.2s ease; border: 1px solid transparent;
         }
-        .checkbox-group:hover { background-color: var(--hover-bg); border-color: #f7c3ce; }
-        .checkbox-group input[type="checkbox"] { margin-right: 15px; width: 24px; height: 24px; accent-color: var(--primary-accent); flex-shrink: 0; }
+        .inspection-item:hover { background-color: var(--hover-bg); border-color: #f7c3ce; }
+        
+        .primary-check {
+            display: flex; align-items: flex-start; cursor: pointer; flex-grow: 1; font-weight: 500;
+        }
+        .primary-check input { margin-right: 15px; width: 24px; height: 24px; accent-color: var(--primary-accent); flex-shrink: 0; margin-top: 2px; }
+        
+        .na-check {
+            display: flex; align-items: center; cursor: pointer; color: #666; font-size: 0.9em; margin-left: 15px; padding-left: 15px; border-left: 1px solid #ddd; flex-shrink: 0; font-weight: bold;
+        }
+        .na-check input { margin-right: 8px; width: 20px; height: 20px; accent-color: #888; }
         
         details { background: white; border: 1px solid #eee; border-radius: 8px; padding: 15px; margin-top: 25px; margin-bottom: 25px; }
         summary { font-weight: bold; font-size: 1.2em; color: var(--primary-accent); cursor: pointer; outline: none; padding: 5px 0; }
         
         .photo-upload-container {
-            margin-top: 25px;
-            padding: 20px;
-            background: var(--page-bg);
-            border: 2px dashed var(--primary-accent);
-            border-radius: 8px;
-            text-align: center;
+            margin-top: 25px; padding: 20px; background: var(--page-bg); border: 2px dashed var(--primary-accent); border-radius: 8px; text-align: center;
         }
         .photo-upload-container label.upload-label {
             margin-top: 0; font-size: 1.1em; color: var(--primary-accent); display: block; margin-bottom: 10px; cursor: pointer; font-weight: bold;
         }
         
-        .image-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-            justify-content: center;
-        }
-
-        img.preview-image {
-            max-width: 100%;
-            height: auto;
-            max-height: 300px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            object-fit: contain;
-        }
+        .image-gallery { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px; justify-content: center; }
+        img.preview-image { max-width: 100%; height: auto; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); object-fit: contain; }
         
         button.export-btn {
             display: block; width: 100%; padding: 18px; background-color: var(--primary-accent); color: white; border: none; border-radius: 8px; font-size: 1.3em; font-weight: bold; cursor: pointer; margin-top: 40px; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(107, 17, 17, 0.3); transition: background-color 0.2s;
         }
         button.export-btn:hover { background-color: #4a0b0b; }
         
+        /* --- PDF PRINT STYLING --- */
         @media print {
             body { background: white; padding: 0; font-size: 12pt;}
             .header-card, .section-card, details { box-shadow: none; border: none; padding: 0; margin-bottom: 20px;}
@@ -97,7 +96,7 @@
             details[open] summary ~ * { display: block; }
             details:not([open]) summary ~ * { display: block; }
             
-            button.export-btn { display: none !important; }
+            button.export-btn, button.clear-btn { display: none !important; }
             
             .photo-upload-container { border: none; background: none; padding: 5px 0; text-align: left; page-break-inside: avoid; }
             .upload-label, input[type="file"] { display: none !important; }
@@ -105,13 +104,15 @@
             .image-gallery { justify-content: flex-start; gap: 10px; }
             img.preview-image { max-width: 300px; max-height: 300px; box-shadow: none; border: 2px solid #ddd; }
 
-            .checkbox-group { background: none; border: none; padding: 5px 0; margin-bottom: 5px; }
-            input[type="checkbox"] { height: 15px; width: 15px; }
+            .inspection-item { background: none; border: none; padding: 5px 0; margin-bottom: 5px; }
+            .na-check { border-left: none; }
             p.reflection-text { border-left: none; font-style: normal; font-weight: bold; color: black; padding-left: 0;}
         }
     </style>
 </head>
 <body>
+
+    <button type="button" class="clear-btn" onclick="clearForm()">+ Start New Inspection</button>
 
     <h1>Alpha Roofing - Field Inspection</h1>
 
@@ -142,12 +143,12 @@
         <details>
             <summary>1. Safety Conditions</summary>
             <div style="margin-top: 20px;">
-                <label class="checkbox-group"><input type="checkbox"> Site access established and clear</label>
-                <label class="checkbox-group"><input type="checkbox"> Equipment secured and maintained</label>
-                <label class="checkbox-group"><input type="checkbox"> Building access procedures followed</label>
-                <label class="checkbox-group"><input type="checkbox"> Roof access procedures followed</label>
-                <label class="checkbox-group"><input type="checkbox"> Flagging/Barricades in place and adequate</label>
-                <label class="checkbox-group"><input type="checkbox"> Harness usage observed where required</label>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Site access established and clear</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Equipment secured and maintained</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Building access procedures followed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Roof access procedures followed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Flagging/Barricades in place and adequate</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Harness usage observed where required</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">Comments:</label>
             <textarea placeholder="Safety comments..."></textarea>
@@ -160,11 +161,11 @@
         <details>
             <summary>2. Job Site Conditions</summary>
              <div style="margin-top: 20px;">
-                <label class="checkbox-group"><input type="checkbox"> GC management interaction/coordination successful</label>
-                <label class="checkbox-group"><input type="checkbox"> Alpha material management organized</label>
-                <label class="checkbox-group"><input type="checkbox"> Trash management and disposal adequate</label>
-                <label class="checkbox-group"><input type="checkbox"> Overall job site cleanliness maintained</label>
-                <label class="checkbox-group"><input type="checkbox"> Building access free of obstruction</label>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> GC management interaction/coordination successful</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Alpha material management organized</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Trash management and disposal adequate</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Overall job site cleanliness maintained</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Building access free of obstruction</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">Comments:</label>
             <textarea placeholder="Site condition comments..."></textarea>
@@ -180,10 +181,10 @@
         <details>
             <summary>1. Jump Out Inspection (General Observations)</summary>
              <div style="margin-top: 20px;">
-                <label class="checkbox-group"><input type="checkbox"> Safety setup compliant</label>
-                <label class="checkbox-group"><input type="checkbox"> Tool inspections completed</label>
-                <label class="checkbox-group"><input type="checkbox"> Cleanliness & Organization maintained</label>
-                <label class="checkbox-group"><input type="checkbox"> Crew conduct professional and safe</label>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Safety setup compliant</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Tool inspections completed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Cleanliness & Organization maintained</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Crew conduct professional and safe</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">Comments on Jump Out:</label>
             <textarea placeholder="Jump out comments..."></textarea>
@@ -196,9 +197,9 @@
         <details>
             <summary>2. Production & Dry-in Status</summary>
              <div style="margin-top: 20px;">
-                <label class="checkbox-group"><input type="checkbox"> Stage of work observed matches plan</label>
-                <label class="checkbox-group"><input type="checkbox"> Assembly procedures compliant</label>
-                <label class="checkbox-group"><input type="checkbox"> Coverage is complete/on target</label>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Stage of work observed matches plan</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Assembly procedures compliant</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Coverage is complete/on target</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">Dry in status:</label>
             <select>
@@ -218,10 +219,10 @@
         <details>
             <summary>3. Details</summary>
              <div style="margin-top: 20px;">
-                <label class="checkbox-group"><input type="checkbox"> Quality of work meets Alpha Roofing standards: rounded corners, straight cuts, square allignment</label>
-                <label class="checkbox-group"><input type="checkbox"> Specification compliance confirmed</label>
-                <label class="checkbox-group"><input type="checkbox"> Warranty inspection factors: penetrations, terminations, drains, patches</label>
-                <label class="checkbox-group"><input type="checkbox"> Efficiency observations noted</label>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Quality of work meets Alpha Roofing standards: rounded corners, straight cuts, square allignment</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Specification compliance confirmed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Warranty inspection factors: penetrations, terminations, drains, patches</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Efficiency observations noted</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">Specific Details Requiring Attention:</label>
             <textarea placeholder="Enter specific details..."></textarea>
@@ -244,11 +245,11 @@
                 <option value="poor">Poor</option>
             </select>
             <div style="margin-top: 20px;">
-                <label class="checkbox-group"><input type="checkbox"> Successes discussed</label>
-                <label class="checkbox-group"><input type="checkbox"> Obstacles identified</label>
-                <label class="checkbox-group"><input type="checkbox"> Suggestions for the process recorded</label>
-                <label class="checkbox-group"><input type="checkbox"> GC interactions reviewed</label>
-                <label class="checkbox-group"><input type="checkbox"> Trades coordination reviewed</label>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Successes discussed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Obstacles identified</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Suggestions for the process recorded</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> GC interactions reviewed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Trades coordination reviewed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">Summary of Discussion:</label>
             <textarea placeholder="Enter discussion summary..."></textarea>
@@ -257,8 +258,8 @@
         <details>
             <summary>2. Safety Needs</summary>
             <div style="margin-top: 20px;">
-                <label class="checkbox-group"><input type="checkbox"> Alpha’s responsibility items addressed</label>
-                <label class="checkbox-group"><input type="checkbox"> Crew’s responsibility items addressed</label>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Alpha’s responsibility items addressed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Crew’s responsibility items addressed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">Required Safety Follow-up:</label>
             <textarea placeholder="Enter safety follow-up items..."></textarea>
@@ -267,10 +268,10 @@
         <details>
             <summary>3. Materials Needs</summary>
             <div style="margin-top: 20px;">
-                <label class="checkbox-group"><input type="checkbox"> Insulation inventory checked</label>
-                <label class="checkbox-group"><input type="checkbox"> Membrane inventory checked</label>
-                <label class="checkbox-group"><input type="checkbox"> Fasteners inventory checked</label>
-                <label class="checkbox-group"><input type="checkbox"> Terminations inventory checked</label>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Insulation inventory checked</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Membrane inventory checked</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Fasteners inventory checked</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Terminations inventory checked</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">Specific Material Orders/Adjustments Needed:</label>
             <textarea placeholder="Enter material needs..."></textarea>
@@ -279,9 +280,9 @@
         <details>
             <summary>4. RFI/Change Order (CO)</summary>
             <div style="margin-top: 20px;">
-                <label class="checkbox-group"><input type="checkbox"> Details in question addressed</label>
-                <label class="checkbox-group"><input type="checkbox"> Field verified components confirmed</label>
-                <label class="checkbox-group"><input type="checkbox"> Recommended changes in scope noted</label>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Details in question addressed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Field verified components confirmed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Recommended changes in scope noted</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">RFI/CO Status:</label>
             <input type="text" placeholder="Enter current status...">
@@ -296,8 +297,8 @@
                 <option value="needs-improvement">Needs Improvement</option>
             </select>
             <div style="margin-top: 20px;">
-                <label class="checkbox-group"><input type="checkbox"> Size of crew adequate</label>
-                <label class="checkbox-group"><input type="checkbox"> Alpha quality standards met</label>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Size of crew adequate</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Alpha quality standards met</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">Crew Feedback/Action Plan:</label>
             <textarea placeholder="Enter feedback and action plan..."></textarea>
@@ -306,12 +307,12 @@
         <details>
             <summary>6. Next Steps</summary>
             <div style="margin-top: 20px;">
-                <label class="checkbox-group"><input type="checkbox"> Roof progression plan confirmed</label>
-                <label class="checkbox-group"><input type="checkbox"> Weather forecast reviewed for impact</label>
-                <label class="checkbox-group"><input type="checkbox"> Demobilization plan established (if applicable)</label>
-                <label class="checkbox-group"><input type="checkbox"> Return trips scheduled (if applicable)</label>
-                <label class="checkbox-group"><input type="checkbox"> Time line reviewed and confirmed</label>
-                <label class="checkbox-group"><input type="checkbox"> Superintendent’s plan documented</label>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Roof progression plan confirmed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Weather forecast reviewed for impact</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Demobilization plan established (if applicable)</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Return trips scheduled (if applicable)</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Time line reviewed and confirmed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Superintendent’s plan documented</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">Next Steps Action Items:</label>
             <textarea placeholder="Enter action items..."></textarea>
@@ -321,8 +322,51 @@
     <button class="export-btn" id="pdfButton" onclick="generatePDF()">Generate PDF Report</button>
 
     <script>
-        document.getElementById('todayDate').valueAsDate = new Date();
+        // Set date only if it's empty
+        if (!document.getElementById('todayDate').value) {
+            document.getElementById('todayDate').valueAsDate = new Date();
+        }
 
+        // --- AUTO SAVE FEATURE ---
+        function saveDraft() {
+            const data = {};
+            document.querySelectorAll('input[type="text"], input[type="date"], textarea, select').forEach((el, index) => {
+                data['text_' + index] = el.value;
+            });
+            document.querySelectorAll('input[type="checkbox"]').forEach((el, index) => {
+                data['check_' + index] = el.checked;
+            });
+            localStorage.setItem('alphaDraft', JSON.stringify(data));
+        }
+
+        function loadDraft() {
+            const saved = localStorage.getItem('alphaDraft');
+            if (saved) {
+                const data = JSON.parse(saved);
+                document.querySelectorAll('input[type="text"], input[type="date"], textarea, select').forEach((el, index) => {
+                    if(data['text_' + index] !== undefined) el.value = data['text_' + index];
+                });
+                document.querySelectorAll('input[type="checkbox"]').forEach((el, index) => {
+                    if(data['check_' + index] !== undefined) el.checked = data['check_' + index];
+                });
+            }
+        }
+
+        // Load data when page opens
+        window.onload = loadDraft;
+
+        // Save data every time the user types or clicks a box
+        document.addEventListener('input', saveDraft);
+        document.addEventListener('change', saveDraft);
+
+        function clearForm() {
+            if(confirm("Are you sure you want to clear all data and start a new inspection?")) {
+                localStorage.removeItem('alphaDraft');
+                location.reload();
+            }
+        }
+
+        // --- MULTIPLE IMAGE LOADER (Fix applied for adding photos) ---
         const fileInputs = document.querySelectorAll('input[type="file"]');
         
         fileInputs.forEach(input => {
@@ -334,10 +378,9 @@
                     gallery = document.createElement('div');
                     gallery.className = 'image-gallery';
                     container.appendChild(gallery);
-                } else {
-                    gallery.innerHTML = '';
-                }
-
+                } 
+                // Removed the code that was wiping the old photos!
+                
                 Array.from(this.files).forEach(file => {
                     const img = document.createElement('img');
                     img.className = 'preview-image';
@@ -347,6 +390,7 @@
             });
         });
 
+        // --- PDF GENERATOR ---
         function generatePDF() {
             const details = document.querySelectorAll('details');
             details.forEach(detail => {
