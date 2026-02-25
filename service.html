@@ -10,9 +10,9 @@
 
     <style>
         :root {
-            --page-bg: #e2e8f0; /* Light slate grey */
+            --page-bg: #e2e8f0; 
             --card-white: #ffffff;
-            --primary-accent: #2c3e50; /* Steel blue / Dark slate */
+            --primary-accent: #2c3e50; 
             --hover-bg: #cbd5e1;
             --item-bg: #f1f5f9;
         }
@@ -33,6 +33,12 @@
         .header-card, .section-card {
             background: var(--card-white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 30px;
         }
+
+        /* Clear Form Button */
+        button.clear-btn {
+            display: block; width: 100%; padding: 12px; background-color: transparent; color: var(--primary-accent); border: 2px solid var(--primary-accent); border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin-bottom: 30px; transition: background-color 0.2s;
+        }
+        button.clear-btn:hover { background-color: var(--hover-bg); }
         
         label.field-label { display: block; font-weight: bold; margin-top: 25px; margin-bottom: 8px; color: #444; }
         
@@ -47,43 +53,33 @@
 
         textarea { resize: vertical; min-height: 100px; }
         
-        .checkbox-group {
-            display: flex; align-items: center; margin-bottom: 15px; font-weight: 500; background-color: var(--item-bg); padding: 12px 15px; border-radius: 8px; border: 1px solid transparent; transition: all 0.2s ease;
+        /* Layout for Task + N/A Checkboxes */
+        .inspection-item {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            background-color: var(--item-bg); padding: 12px 15px; border-radius: 8px; margin-bottom: 12px; transition: all 0.2s ease; border: 1px solid transparent;
         }
-        .checkbox-group:hover { background-color: var(--hover-bg); border-color: #94a3b8; }
-        .checkbox-group input[type="checkbox"] { margin-right: 15px; width: 24px; height: 24px; accent-color: var(--primary-accent); flex-shrink: 0; }
+        .inspection-item:hover { background-color: var(--hover-bg); border-color: #94a3b8; }
         
-        details { background: white; border: 1px solid #eee; border-radius: 8px; padding: 15px; margin-top: 25px; margin-bottom: 25px; }
-        summary { font-weight: bold; font-size: 1.2em; color: var(--primary-accent); cursor: pointer; outline: none; padding: 5px 0; }
+        .primary-check {
+            display: flex; align-items: flex-start; cursor: pointer; flex-grow: 1; font-weight: 500;
+            word-break: break-word; /* Forces the text to wrap nicely */
+        }
+        .primary-check input { margin-right: 15px; width: 24px; height: 24px; accent-color: var(--primary-accent); flex-shrink: 0; margin-top: 2px; }
+        
+        .na-check {
+            display: flex; align-items: center; cursor: pointer; color: #666; font-size: 0.9em; margin-left: 15px; padding-left: 15px; border-left: 1px solid #ddd; flex-shrink: 0; font-weight: bold;
+        }
+        .na-check input { margin-right: 8px; width: 20px; height: 20px; accent-color: #888; }
         
         .photo-upload-container {
-            margin-top: 25px;
-            padding: 20px;
-            background: var(--item-bg);
-            border: 2px dashed var(--primary-accent);
-            border-radius: 8px;
-            text-align: center;
+            margin-top: 25px; padding: 20px; background: var(--item-bg); border: 2px dashed var(--primary-accent); border-radius: 8px; text-align: center;
         }
         .photo-upload-container label.upload-label {
             margin-top: 0; font-size: 1.1em; color: var(--primary-accent); display: block; margin-bottom: 10px; cursor: pointer; font-weight: bold;
         }
         
-        .image-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-            justify-content: center;
-        }
-
-        img.preview-image {
-            max-width: 100%;
-            height: auto;
-            max-height: 300px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            object-fit: contain;
-        }
+        .image-gallery { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px; justify-content: center; }
+        img.preview-image { max-width: 100%; height: auto; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); object-fit: contain; }
         
         button.export-btn {
             display: block; width: 100%; padding: 18px; background-color: var(--primary-accent); color: white; border: none; border-radius: 8px; font-size: 1.3em; font-weight: bold; cursor: pointer; margin-top: 40px; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(44, 62, 80, 0.3); transition: background-color 0.2s;
@@ -92,13 +88,10 @@
         
         @media print {
             body { background: white; padding: 0; font-size: 12pt;}
-            .header-card, .section-card, details { box-shadow: none; border: none; padding: 0; margin-bottom: 20px;}
+            .header-card, .section-card { box-shadow: none; border: none; padding: 0; margin-bottom: 20px;}
             h1, h2 { color: black; border-bottom: none; }
-            details { border-bottom: 1px solid #ddd; padding-bottom: 20px; page-break-inside: avoid; }
-            details[open] summary ~ * { display: block; }
-            details:not([open]) summary ~ * { display: block; }
             
-            button.export-btn { display: none !important; }
+            button.export-btn, button.clear-btn { display: none !important; }
             
             .photo-upload-container { border: none; background: none; padding: 5px 0; text-align: left; page-break-inside: avoid; }
             .upload-label, input[type="file"] { display: none !important; }
@@ -106,12 +99,14 @@
             .image-gallery { justify-content: flex-start; gap: 10px; }
             img.preview-image { max-width: 300px; max-height: 300px; box-shadow: none; border: 2px solid #ddd; }
 
-            .checkbox-group { background: none; border: none; padding: 5px 0; margin-bottom: 5px; }
-            input[type="checkbox"] { height: 15px; width: 15px; }
+            .inspection-item { background: none; border: none; padding: 5px 0; margin-bottom: 5px; }
+            .na-check { border-left: none; }
         }
     </style>
 </head>
 <body>
+
+    <button type="button" class="clear-btn" onclick="clearForm()">+ Start New Inspection</button>
 
     <h1>Alpha Roofing - Service Inspection</h1>
 
@@ -150,11 +145,11 @@
     <div class="section-card">
         <h2>Technician Readiness & Safety</h2>
         <div style="margin-top: 10px;">
-            <label class="checkbox-group"><input type="checkbox"> Appropriate Personal Protective Equipment (PPE) utilized</label>
-            <label class="checkbox-group"><input type="checkbox"> Vehicle and equipment secured and maintained</label>
-            <label class="checkbox-group"><input type="checkbox"> Tools and parts inventory checked for the specific job</label>
-            <label class="checkbox-group"><input type="checkbox"> Customer's property protected (e.g., drop cloths, covers used)</label>
-            <label class="checkbox-group"><input type="checkbox"> Safety protocols followed upon entering and exiting the site</label>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Appropriate Personal Protective Equipment (PPE) utilized</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Vehicle and equipment secured and maintained</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Tools and parts inventory checked for the specific job</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Customer's property protected (e.g., drop cloths, covers used)</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Safety protocols followed upon entering and exiting the site</label><label class="na-check"><input type="checkbox"> N/A</label></div>
         </div>
         <label class="field-label">Readiness & Safety Notes:</label>
         <textarea placeholder="Add any safety notes..."></textarea>
@@ -167,10 +162,10 @@
     <div class="section-card">
         <h2>On-Site Service & Procedure</h2>
         <div style="margin-top: 10px;">
-            <label class="checkbox-group"><input type="checkbox"> Work area isolated and cleared of non-essential items</label>
-            <label class="checkbox-group"><input type="checkbox"> Repair steps followed as per company/manufacturer guidelines</label>
-            <label class="checkbox-group"><input type="checkbox"> Communication with office/support for complex issues successful</label>
-            <label class="checkbox-group"><input type="checkbox"> Work area cleanliness maintained during the service</label>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Work area isolated and cleared of non-essential items</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Repair steps followed as per company/manufacturer guidelines</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Communication with office/support for complex issues successful</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Work area cleanliness maintained during the service</label><label class="na-check"><input type="checkbox"> N/A</label></div>
         </div>
         <label class="field-label">Service & Procedure Notes:</label>
         <textarea placeholder="Add repair procedure notes..."></textarea>
@@ -183,10 +178,10 @@
     <div class="section-card">
         <h2>Work Quality & Completion</h2>
         <div style="margin-top: 10px;">
-            <label class="checkbox-group"><input type="checkbox"> Repair issue completely resolved and confirmed by technician</label>
-            <label class="checkbox-group"><input type="checkbox"> All affected systems or components checked for proper function</label>
-            <label class="checkbox-group"><input type="checkbox"> Quality of workmanship meets company standards</label>
-            <label class="checkbox-group"><input type="checkbox"> Area cleared of all debris, old parts, and tools upon completion</label>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Repair issue completely resolved and confirmed by technician</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> All affected systems or components checked for proper function</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Quality of workmanship meets company standards</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+            <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Area cleared of all debris, old parts, and tools upon completion</label><label class="na-check"><input type="checkbox"> N/A</label></div>
         </div>
         <label class="field-label">Completion Notes:</label>
         <textarea placeholder="Add final completion notes..."></textarea>
@@ -199,8 +194,48 @@
     <button class="export-btn" id="pdfButton" onclick="generatePDF()">Generate PDF Report</button>
 
     <script>
-        document.getElementById('todayDate').valueAsDate = new Date();
+        // Set date only if it's empty
+        if (!document.getElementById('todayDate').value) {
+            document.getElementById('todayDate').valueAsDate = new Date();
+        }
 
+        // --- AUTO SAVE FEATURE (Service specific memory slot) ---
+        function saveDraft() {
+            const data = {};
+            document.querySelectorAll('input[type="text"], input[type="date"], input[type="time"], textarea, select').forEach((el, index) => {
+                data['text_' + index] = el.value;
+            });
+            document.querySelectorAll('input[type="checkbox"]').forEach((el, index) => {
+                data['check_' + index] = el.checked;
+            });
+            localStorage.setItem('alphaServiceDraft', JSON.stringify(data));
+        }
+
+        function loadDraft() {
+            const saved = localStorage.getItem('alphaServiceDraft');
+            if (saved) {
+                const data = JSON.parse(saved);
+                document.querySelectorAll('input[type="text"], input[type="date"], input[type="time"], textarea, select').forEach((el, index) => {
+                    if(data['text_' + index] !== undefined) el.value = data['text_' + index];
+                });
+                document.querySelectorAll('input[type="checkbox"]').forEach((el, index) => {
+                    if(data['check_' + index] !== undefined) el.checked = data['check_' + index];
+                });
+            }
+        }
+
+        window.onload = loadDraft;
+        document.addEventListener('input', saveDraft);
+        document.addEventListener('change', saveDraft);
+
+        function clearForm() {
+            if(confirm("Are you sure you want to clear all data and start a new inspection?")) {
+                localStorage.removeItem('alphaServiceDraft');
+                location.reload();
+            }
+        }
+
+        // --- MULTIPLE IMAGE LOADER ---
         const fileInputs = document.querySelectorAll('input[type="file"]');
         
         fileInputs.forEach(input => {
@@ -212,10 +247,8 @@
                     gallery = document.createElement('div');
                     gallery.className = 'image-gallery';
                     container.appendChild(gallery);
-                } else {
-                    gallery.innerHTML = '';
-                }
-
+                } 
+                
                 Array.from(this.files).forEach(file => {
                     const img = document.createElement('img');
                     img.className = 'preview-image';
@@ -225,14 +258,8 @@
             });
         });
 
+        // --- PDF GENERATOR ---
         function generatePDF() {
-            // Force all menus open for the report
-            const details = document.querySelectorAll('details');
-            details.forEach(detail => {
-                detail.setAttribute('open', 'true');
-            });
-            
-            // Dynamic naming using the Work Order
             let woNum = document.getElementById('workOrderNumber').value.trim();
             let dateStr = document.getElementById('todayDate').value;
             
@@ -241,7 +268,6 @@
             }
             
             const originalTitle = document.title;
-            // Example output: Service_WO_12345_2026-02-23
             document.title = `Service_WO_${woNum}_${dateStr}`;
             
             window.print();
