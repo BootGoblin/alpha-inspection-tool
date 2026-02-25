@@ -52,7 +52,7 @@
         
         textarea { resize: vertical; min-height: 100px; }
         
-        /* New Layout for Task + N/A Checkboxes */
+        /* Layout for Task + N/A Checkboxes */
         .inspection-item {
             display: flex; justify-content: space-between; align-items: flex-start;
             background-color: var(--item-bg); padding: 12px 15px; border-radius: 8px; margin-bottom: 12px; transition: all 0.2s ease; border: 1px solid transparent;
@@ -61,6 +61,7 @@
         
         .primary-check {
             display: flex; align-items: flex-start; cursor: pointer; flex-grow: 1; font-weight: 500;
+            word-break: break-word; /* Forces the text to wrap nicely on small screens */
         }
         .primary-check input { margin-right: 15px; width: 24px; height: 24px; accent-color: var(--primary-accent); flex-shrink: 0; margin-top: 2px; }
         
@@ -147,7 +148,7 @@
                 <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Equipment secured and maintained</label><label class="na-check"><input type="checkbox"> N/A</label></div>
                 <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Building access procedures followed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
                 <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Roof access procedures followed</label><label class="na-check"><input type="checkbox"> N/A</label></div>
-                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Flagging/Barricades in place and adequate</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Flagging & Barricades in place and adequate</label><label class="na-check"><input type="checkbox"> N/A</label></div>
                 <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Harness usage observed where required</label><label class="na-check"><input type="checkbox"> N/A</label></div>
             </div>
             <label class="field-label">Comments:</label>
@@ -161,7 +162,7 @@
         <details>
             <summary>2. Job Site Conditions</summary>
              <div style="margin-top: 20px;">
-                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> GC management interaction/coordination successful</label><label class="na-check"><input type="checkbox"> N/A</label></div>
+                <div class="inspection-item"><label class="primary-check"><input type="checkbox"> GC management interaction & coordination successful</label><label class="na-check"><input type="checkbox"> N/A</label></div>
                 <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Alpha material management organized</label><label class="na-check"><input type="checkbox"> N/A</label></div>
                 <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Trash management and disposal adequate</label><label class="na-check"><input type="checkbox"> N/A</label></div>
                 <div class="inspection-item"><label class="primary-check"><input type="checkbox"> Overall job site cleanliness maintained</label><label class="na-check"><input type="checkbox"> N/A</label></div>
@@ -366,7 +367,7 @@
             }
         }
 
-        // --- MULTIPLE IMAGE LOADER (Fix applied for adding photos) ---
+        // --- MULTIPLE IMAGE LOADER ---
         const fileInputs = document.querySelectorAll('input[type="file"]');
         
         fileInputs.forEach(input => {
@@ -379,7 +380,6 @@
                     gallery.className = 'image-gallery';
                     container.appendChild(gallery);
                 } 
-                // Removed the code that was wiping the old photos!
                 
                 Array.from(this.files).forEach(file => {
                     const img = document.createElement('img');
